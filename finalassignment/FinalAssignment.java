@@ -26,164 +26,6 @@ import java.io.*;
 
 public class FinalAssignment 
 {
-    private static String answer = "";
-    private static BinaryTree<String> tree = new BinaryTree<String>();
-    private static Scanner scan = new Scanner(System.in);
-    
-    /**
-     *main
-     * @param args
-     */
-    public static void main(String args[]) 
-    {
-        String filename = "tree.ser";
-
-        System.out.println("Please choose a mode:\n 1. Animals\n 2. Vegetables\n 3. Mineral\n 4. Exit");
-        int mode = scan.nextInt();
-        if (mode == 1) 
-        {
-            filename = "animals.cer";
-        }//End if 
-        else if (mode == 2) 
-        {
-            filename = "vegetables.cer";
-        }//End else if 
-        else if (mode == 3) 
-        {
-            filename = "mineral.cer";
-        }//End else if 
-        else if (mode ==4)
-        {
-            System.out.println("Goodbye!");
-            return;
-        }
-        else
-        {
-            System.out.println("Invalid choice. Please enter a number between 1 and 4.");
-        }//End else 
-
-        System.out.println("Do you want to continue from your last checkpoint (y or n)?");
-        String load = scan.next();
-        scan.nextLine(); 
-        BinaryTree<String> tree;
-        while (true)
-        {
-        if (load.toLowerCase().startsWith("y")) 
-        {
-            try 
-            {
-                tree = loadBinaryTree(filename);
-                System.out.println("Custom tree loaded successfully.");
-                break;
-            }//End try
-            catch (FileNotFoundException e) 
-            {
-                System.out.println("There is no start checkpoint.");
-                tree = createDefaultTree(mode);
-                break;
-            }//End catch
-            catch (Exception e) 
-            {
-                e.printStackTrace();
-                return;
-            }//End catch
-        }//End if
-        else if ("n".equalsIgnoreCase(load)) 
-        {
-            tree = createDefaultTree(mode);
-            break;
-        } //End else if
-        else 
-        {
-            System.out.println("Invalid input. Please enter 'y' or 'n'.");
-            load = scan.next();  // ask the user again
-            scan.nextLine();
-        }//End else
-    }
-
-        while (true) 
-        {
-            TreeNode<String> currentNode = tree.getRootNode();
-
-            while (!currentNode.isLeaf()) 
-            {
-                System.out.println(currentNode.getData());
-                answer = scan.nextLine();
-
-                if (answer.toLowerCase().startsWith("y")) 
-                {
-                    currentNode = currentNode.getLeftChild();
-                } //End if
-                else 
-                {
-                    currentNode = currentNode.getRightChild();
-                }//End else
-            }//End while
-
-            System.out.println("Is it a(n) " + currentNode.getData() + "?");
-            answer = scan.nextLine();
-
-            if (answer.toLowerCase().startsWith("y")) 
-            {
-                System.out.println("\nI guessed it! What you would like to do now? Choose a number...");
-            }//End if
-            //When the answer is n on a leaf Node
-            else    
-            {
-                //Ask for the answer and save it
-                System.out.println("I give up. What is the correct answer?");
-                String newItem = scan.nextLine();
-                String oldItem = currentNode.getData();
-
-                //Now ask for a question based on the answer
-                System.out.println("Enter a question for which the answer is Yes for " + newItem + " and No for " + oldItem);
-                String newQuestion = scan.nextLine();
-
-                //Ensure that the question will have a question mark at the end
-                newQuestion = newQuestion.trim();
-                if (!newQuestion.endsWith("?")) newQuestion += "?";
-                {
-                    currentNode.setData(newQuestion);
-                    currentNode.setLeftChild(new TreeNode<String>(newItem));
-                    currentNode.setRightChild(new TreeNode<String>(oldItem));
-                }//End if
-            }//End else
-    
-            System.out.println("Would you like to play again? (y or n)");
-            String action = scan.nextLine();
-            
-            while (!action.toLowerCase().startsWith("y") && !action.toLowerCase().startsWith("n")) 
-            {
-                System.out.println("Invalid input. Please enter 'y' or 'n'.");
-                action = scan.nextLine();
-            }//End while
-
-            if (!action.toLowerCase().startsWith("y")) 
-            {
-                System.out.println("Do you want to save the current checkpoint? (y or n)");
-                String save = scan.nextLine();
-                while (!save.toLowerCase().startsWith("y") && !save.toLowerCase().startsWith("n")) 
-                {
-                    System.out.println("Invalid input. Please enter 'y' or 'n'.");
-                    save = scan.nextLine();
-                }//End while
-                if (save.toLowerCase().startsWith("y")) 
-                {
-                    try 
-                    {
-                        saveBinaryTree(tree, filename);
-                        System.out.println("Current checkpoint saved successfully.");                    
-                    }//End try
-                    catch (Exception e) 
-                    {
-                        e.printStackTrace();
-                    }//End catch
-                }//End if
-                break;
-            }//End if
-        }//End while
-    }//End main
-
     /**
      *BinaryTree
      * @param mode
@@ -284,37 +126,17 @@ public class FinalAssignment
         }//End else if 
         return tree;
     }//End BinaryTree
-
+    
     /**
-     *saveBinaryTree
-     * @param tree
-     * @param filename
-     * @throws Exception
+     *main
+     * @param args
      */
-    public static void saveBinaryTree(BinaryTree<String> tree, String filename) throws Exception 
+    public static void main(String args[]) 
     {
-        FileOutputStream fos = new FileOutputStream(filename);
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-        oos.writeObject(tree);
-        oos.close();
-        fos.close();
-        System.out.println("The tree has been successfully saved\n");
-    }//End saveBinaryTree
+        BinaryTree.startMenu();
+        BinaryTree.playGame();
+        BinaryTree.endingMenu();
+    }//End main
 
-    /**
-     *loadBinaryTree
-     * @param filename
-     * @return
-     * @throws Exception
-     */
-    public static BinaryTree<String> loadBinaryTree(String filename) throws Exception
-    {
-        FileInputStream fis = new FileInputStream(filename);
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        BinaryTree<String> tree = (BinaryTree<String>) ois.readObject();
-        ois.close();
-        fis.close();
-        System.out.println("The tree has been successfully loaded\n");
-        return tree;  
-    }//End BinaryTree
+    
 }//End FinalAssignment 
