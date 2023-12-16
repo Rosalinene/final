@@ -1,4 +1,16 @@
-
+/*
+* @author Huong Pham
+ * Course: CSC 112-301 Fund of computing II
+ * Assignment: Guessing game
+ * Description: Write a program that plays the guessing game and allows the computer to “learn” how to play.
+Set up the Class structure as follows:
+Have one class for the Tree Node – one node on the tree.
+Have one class for the Binary Tree operations on Tree Node.  Include your Learn and Play functions in this class.
+Have the driver class that contains the main function to represent the game.  Include a menu that allows the Player to pick from an Animal, Vegetable, or Mineral.  Have a separate tree structure for each option.  Include an separate menu to allow the Player to start a new game or continue an existing game.
+Include the ability to save a current game so that it can be continued at a later time.
+Document at least 6 possible answers for each category (animal, vegetable, and mineral) that the computer can try to guess.
+Include the documentation in your submission so that the program can be properly tested.
+*/
 package finalassignment;
 
 import treenode.*;
@@ -18,6 +30,10 @@ public class FinalAssignment
     private static BinaryTree<String> tree = new BinaryTree<String>();
     private static Scanner scan = new Scanner(System.in);
     
+    /**
+     *
+     * @param args
+     */
     public static void main(String args[]) 
     {
         String filename = "tree.ser";
@@ -166,6 +182,12 @@ public class FinalAssignment
     }//End main
 
     //Creates a default tree with questions and potential answers
+
+    /**
+     *
+     * @param mode
+     * @return
+     */
     public static BinaryTree<String> createDefaultTree(int mode) 
     {
         BinaryTree<String> tree = new BinaryTree<String>();
@@ -260,6 +282,13 @@ public class FinalAssignment
     }//End BinaryTree
 
     //Saves the tree to a .ser file
+
+    /**
+     *
+     * @param tree
+     * @param filename
+     * @throws Exception
+     */
     public static void saveBinaryTree(BinaryTree<String> tree, String filename) throws Exception 
     {
         FileOutputStream fos = new FileOutputStream(filename);
@@ -271,6 +300,13 @@ public class FinalAssignment
     }//End saveBinaryTree
 
     //Loads the tree from a .ser file
+
+    /**
+     *
+     * @param filename
+     * @return
+     * @throws Exception
+     */
     public static BinaryTree<String> loadBinaryTree(String filename) throws Exception
     {
         FileInputStream fis = new FileInputStream(filename);
