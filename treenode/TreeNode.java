@@ -18,7 +18,7 @@ import java.io.Serializable;
  * @author huong
  * @param <T>
  */
-public class TreeNode <T> implements Serializable
+public class TreeNode <T extends String> implements Serializable
 {
     private T data;
     private TreeNode<T> left;

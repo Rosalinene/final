@@ -26,7 +26,7 @@ import java.util.Scanner;
  * @author huong
  * @param <T>
  */
-public class BinaryTree<T> implements Serializable
+public class BinaryTree<T extends String> implements Serializable
 {
     private TreeNode<T> root;
     private static String filename = "tree.ser"; 
@@ -80,6 +80,7 @@ public class BinaryTree<T> implements Serializable
     {
         root = node;
     }//End setRoot
+//End setRoot
 
     private void privateSetTree(T rootData, BinaryTree<T> leftTree,
                                 BinaryTree<T> rightTree)
@@ -112,13 +113,7 @@ public class BinaryTree<T> implements Serializable
         {
             rightTree.clear();
         }//End if
-    } // End privateSetTree
-
-
-    private TreeNode<T> copyNodes() // not essential
-    {
-        return (TreeNode<T>)root.copy();
-    } // End copyNodes
+    }// End privateSetTree
 
     /**
      *getRootData
@@ -219,6 +214,7 @@ public class BinaryTree<T> implements Serializable
      *toString
      * @return
      */
+    @Override
     public String toString() 
     {
         return root.toString();
@@ -231,75 +227,12 @@ public class BinaryTree<T> implements Serializable
         currentNode.setRightChild(new TreeNode<>(oldItem));
     }
     
-    public static void startMenu()
+    /**
+     *
+     */
+    public void playGame() 
     {
-        System.out.println("Welcome to the Guessing Game!");
-        System.out.println("Please choose a mode:\n 1. Animals\n 2. Vegetables\n 3. Mineral\n 4. Exit");
-        int mode = scan.nextInt();
-        
-        if (mode == 1) 
-        {
-            filename = "animals.cer";
-        }//End if 
-        else if (mode == 2) 
-        {
-            filename = "vegetables.cer";
-        }//End else if 
-        else if (mode == 3) 
-        {
-            filename = "mineral.cer";
-        }//End else if 
-        else if (mode ==4)
-        {
-            System.out.println("Goodbye!");
-            return;
-        }
-        else
-        {
-            System.out.println("Invalid choice. Please enter a number between 1 and 4.");
-            //return;
-        }//End else 
-        System.out.println("Do you want to continue from your last checkpoint (y or n)?");
-        String load = scan.next();
-        scan.nextLine(); 
-        
-        while (true)
-        {
-        if (load.toLowerCase().startsWith("y")) 
-        {
-            try 
-            {
-                loadBinaryTree(filename);
-                System.out.println("Custom tree loaded successfully.");
-                break;
-            }//End try
-            catch (FileNotFoundException e) 
-            {
-                System.out.println("There is no start checkpoint.");
-                createDefaultTree(mode);
-                break;
-            }//End catch       
-            catch (Exception e) 
-            {
-                e.printStackTrace();
-                return;
-            }//End catch
-        }//End if
-        else if ("n".equalsIgnoreCase(load)) 
-        {
-            tree = createDefaultTree(mode);
-            break;
-        } //End else if
-        else 
-        {
-            System.out.println("Invalid input. Please enter 'y' or 'n'.");
-            load = scan.next();  // ask the user again
-            scan.nextLine();
-        }//End else
-    }
-    public static void playGame() 
-    {
-        TreeNode<String> currentNode = tree.getRootNode();
+        TreeNode<T> currentNode = root;
 
         while (!currentNode.isLeaf()) 
         {
@@ -328,7 +261,7 @@ public class BinaryTree<T> implements Serializable
             //Ask for the answer and save it
             System.out.println("I give up. What is the correct answer?");
             String newItem = scan.nextLine();
-            String oldItem = currentNode.getData();
+            T oldItem = currentNode.getData();
 
             //Now ask for a question based on the answer
             System.out.println("Enter a question for which the answer is Yes for " + newItem + " and No for " + oldItem);
@@ -341,39 +274,7 @@ public class BinaryTree<T> implements Serializable
                 learn(currentNode, newItem, oldItem, newQuestion);
             }//End if
         }//End else
-
-        /*System.out.println("Would you like to play again? (y or n)");
-        String action = scan.nextLine();
-
-        while (!action.toLowerCase().startsWith("y") && !action.toLowerCase().startsWith("n")) 
-        {
-            System.out.println("Invalid input. Please enter 'y' or 'n'.");
-            action = scan.nextLine();
-        }//End while
-
-        if (!action.toLowerCase().startsWith("y")) 
-        {
-            System.out.println("Do you want to save the current checkpoint? (y or n)");
-            String save = scan.nextLine();
-            while (!save.toLowerCase().startsWith("y") && !save.toLowerCase().startsWith("n")) 
-            {
-                System.out.println("Invalid input. Please enter 'y' or 'n'.");
-                save = scan.nextLine();
-            }//End while
-            if (save.toLowerCase().startsWith("y")) 
-            {
-                try 
-                {
-                    saveBinaryTree(tree, filename);
-                    System.out.println("Current checkpoint saved successfully.");                    
-                }//End try
-                catch (Exception e) 
-                {
-                    e.printStackTrace();
-                }//End catch
-            }//End if
-        }*/
-    }//End while
+    }//End playGame
     
     public static void endingMenu()
     {

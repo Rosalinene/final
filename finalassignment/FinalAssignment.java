@@ -27,6 +27,20 @@ import java.io.*;
 public class FinalAssignment 
 {
     /**
+     *main
+     * @param args
+     */
+    static BinaryTree<String> tree;
+    public static void main(String args[]) 
+    {
+        tree = new BinaryTree<String>();
+        startMenu();
+        System.out.println(tree);
+        tree.playGame();
+        tree.endingMenu();
+    }//End main
+/**
+ 
      *BinaryTree
      * @param mode
      * @return
@@ -126,17 +140,76 @@ public class FinalAssignment
         }//End else if 
         return tree;
     }//End BinaryTree
-    
-    /**
-     *main
-     * @param args
-     */
-    public static void main(String args[]) 
+    public static void startMenu()
     {
-        BinaryTree.startMenu();
-        BinaryTree.playGame();
-        BinaryTree.endingMenu();
-    }//End main
-
-    
+        String filename = "tree.ser";
+        String answer = "";
+        Scanner scan = new Scanner(System.in);
+        
+        System.out.println("Welcome to the Guessing Game!");
+        System.out.println("Please choose a mode:\n 1. Animals\n 2. Vegetables\n 3. Mineral\n 4. Exit");
+        int mode = scan.nextInt();
+        
+        if (mode == 1) 
+        {
+            filename = "animals.cer";
+        }//End if 
+        else if (mode == 2) 
+        {
+            filename = "vegetables.cer";
+        }//End else if 
+        else if (mode == 3) 
+        {
+            filename = "mineral.cer";
+        }//End else if 
+        else if (mode ==4)
+        {
+            System.out.println("Goodbye!");
+            return;
+        }
+        else
+        {
+            System.out.println("Invalid choice. Please enter a number between 1 and 4.");
+            //return;
+        }//End else 
+        System.out.println("Do you want to continue from your last checkpoint (y or n)?");
+        String load = scan.next();
+        scan.nextLine(); 
+        
+        while (true)
+        {
+        if (load.toLowerCase().startsWith("y")) 
+        {
+            try 
+            {
+                BinaryTree.loadBinaryTree(filename);
+                System.out.println("Custom tree loaded successfully.");
+                break;
+            }//End try
+            catch (FileNotFoundException e) 
+            {
+                System.out.println("There is no start checkpoint.");
+                createDefaultTree(mode);
+                break;
+            }//End catch       
+            catch (Exception e) 
+            {
+                e.printStackTrace();
+                return;
+            }//End catch
+        }//End if
+        else if ("n".equalsIgnoreCase(load)) 
+        {
+            tree = createDefaultTree(mode);
+            System.out.println(tree);
+            break;
+        } //End else if
+        else 
+        {
+            System.out.println("Invalid input. Please enter 'y' or 'n'.");
+            load = scan.next();  // ask the user again
+            scan.nextLine();
+        }//End else
+        }
+    }       
 }//End FinalAssignment 
