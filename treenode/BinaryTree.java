@@ -24,7 +24,7 @@ public class BinaryTree<T> implements Serializable
     private TreeNode<T> root;
 
     /**
-     *
+     *default constructor
      */
     public BinaryTree()
     {
@@ -32,7 +32,7 @@ public class BinaryTree<T> implements Serializable
     } // End default constructor
 
     /**
-     *
+     *constructor
      * @param rootData
      */
     public BinaryTree(T rootData)
@@ -41,7 +41,7 @@ public class BinaryTree<T> implements Serializable
     } // End constructor
 
     /**
-     *
+     *constructor
      * @param rootData
      * @param leftTree
      * @param rightTree
@@ -53,7 +53,7 @@ public class BinaryTree<T> implements Serializable
     } // End constructor
 
     /**
-     *
+     *setTree
      * @param rootData
      */
     public void setTree(T rootData)
@@ -62,7 +62,7 @@ public class BinaryTree<T> implements Serializable
     } // End setTree
 
     /**
-     *
+     *setRoot
      * @param node
      */
     public void setRoot(TreeNode<T> node) 
@@ -110,7 +110,7 @@ public class BinaryTree<T> implements Serializable
     } // End copyNodes
 
     /**
-     *
+     *getRootData
      * @return
      */
     public T getRootData()
@@ -125,7 +125,7 @@ public class BinaryTree<T> implements Serializable
     } // End getRootData
 
     /**
-     *
+     *isEmpty
      * @return
      */
     public boolean isEmpty()
@@ -134,7 +134,7 @@ public class BinaryTree<T> implements Serializable
     } // End isEmpty
 
     /**
-     *
+     *clear
      */
     public void clear()
     {
@@ -142,7 +142,7 @@ public class BinaryTree<T> implements Serializable
     } // End clear
 
     /**
-     *
+     *setRootData
      * @param rootData
      */
     protected void setRootData(T rootData)
@@ -151,7 +151,7 @@ public class BinaryTree<T> implements Serializable
     } // End setRootData
 
     /**
-     *
+     *setRootNode
      * @param rootNode
      */
     protected void setRootNode(TreeNode<T> rootNode)
@@ -160,7 +160,7 @@ public class BinaryTree<T> implements Serializable
     } // End setRootNode
 
     /**
-     *
+     *getRootNode
      * @return
      */
     public TreeNode<T> getRootNode()
@@ -169,7 +169,7 @@ public class BinaryTree<T> implements Serializable
     } // End getRootNode
 
     /**
-     *
+     *getHeight
      * @return
      */
     public int getHeight()
@@ -178,7 +178,7 @@ public class BinaryTree<T> implements Serializable
     } // End getHeight
 
     /**
-     *
+     *getNumberOfNodes
      * @return
      */
     public int getNumberOfNodes()
@@ -187,7 +187,7 @@ public class BinaryTree<T> implements Serializable
     } // End getNumberOfNodes
 
     /**
-     *
+     *inorderTraverse
      */
     public void inorderTraverse()
     {
@@ -205,7 +205,7 @@ public class BinaryTree<T> implements Serializable
     } // End inorderTraverse
 
     /**
-     *
+     *toString
      * @return
      */
     public String toString() 

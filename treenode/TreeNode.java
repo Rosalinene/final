@@ -25,7 +25,7 @@ public class TreeNode <T> implements Serializable
     private TreeNode<T> right;
 
     /**
-     *
+     *default constructor
      */
     public TreeNode()
     {
@@ -33,7 +33,7 @@ public class TreeNode <T> implements Serializable
     } //End default constructor
 
     /**
-     *
+     *constructor
      * @param dataPortion
      */
     public TreeNode(T dataPortion)
@@ -42,7 +42,7 @@ public class TreeNode <T> implements Serializable
     } //End constructor
 
     /**
-     *
+     *constructor
      * @param dataPortion
      * @param leftChild
      * @param rightChild
@@ -56,7 +56,7 @@ public class TreeNode <T> implements Serializable
     } //End constructor
 
     /**
-     *
+     *getData
      * @return
      */
     public T getData()
@@ -65,7 +65,7 @@ public class TreeNode <T> implements Serializable
     } //End getData
 
     /**
-     *
+     *setData
      * @param newData
      */
     public void setData(T newData)
@@ -74,7 +74,7 @@ public class TreeNode <T> implements Serializable
     } //End setData
 
     /**
-     *
+     *getLeftChild
      * @return
      */
     public TreeNode<T> getLeftChild()
@@ -83,7 +83,7 @@ public class TreeNode <T> implements Serializable
     } //End getLeftChild
 
     /**
-     *
+     *getRightChild
      * @return
      */
     public TreeNode<T> getRightChild()
@@ -92,7 +92,7 @@ public class TreeNode <T> implements Serializable
     } //End getRightChild
 
     /**
-     *
+     *setLeftChild
      * @param leftChild
      */
     public void setLeftChild(TreeNode<T> leftChild)
@@ -101,7 +101,7 @@ public class TreeNode <T> implements Serializable
     } //End setLeftChild
 
     /**
-     *
+     *setRightChild
      * @param rightChild
      */
     public void setRightChild(TreeNode<T> rightChild)
@@ -110,7 +110,7 @@ public class TreeNode <T> implements Serializable
     } //End setRightChild
 
     /**
-     *
+     *hasLeftChild
      * @return
      */
     public boolean hasLeftChild()
@@ -119,7 +119,7 @@ public class TreeNode <T> implements Serializable
     } //End hasLeftChild
 
     /**
-     *
+     *hasRightChild
      * @return
      */
     public boolean hasRightChild()
@@ -128,7 +128,7 @@ public class TreeNode <T> implements Serializable
     } //End hasRightChild
 
     /**
-     *
+     *isLeaf
      * @return
      */
     public boolean isLeaf()
@@ -137,7 +137,7 @@ public class TreeNode <T> implements Serializable
     } //End isLeaf
 
     /**
-     *
+     *TreeNode<T> copy()
      * @return
      */
     public TreeNode<T> copy()
@@ -156,7 +156,7 @@ public class TreeNode <T> implements Serializable
     } //End copy
 
     /**
-     *
+     *getHeight
      * @return
      */
     public int getHeight()
@@ -176,7 +176,7 @@ public class TreeNode <T> implements Serializable
     } //End getHeight
 
     /**
-     *
+     *getNumberOfNodes
      * @return
      */
     public int getNumberOfNodes()
@@ -196,7 +196,7 @@ public class TreeNode <T> implements Serializable
     } //End getNumberOfNodes
 
     /**
-     *
+     *toString
      * @return
      */
     public String toString() 

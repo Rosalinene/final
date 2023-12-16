@@ -20,7 +20,7 @@ import java.util.Scanner;
 import java.io.*;
 
 /**
- *
+ *FinalAssignment
  * @author huong
  */
 
@@ -31,7 +31,7 @@ public class FinalAssignment
     private static Scanner scan = new Scanner(System.in);
     
     /**
-     *
+     *main
      * @param args
      */
     public static void main(String args[]) 
@@ -66,17 +66,21 @@ public class FinalAssignment
         String load = scan.next();
         scan.nextLine(); 
         BinaryTree<String> tree;
+        while (true)
+        {
         if (load.toLowerCase().startsWith("y")) 
         {
             try 
             {
                 tree = loadBinaryTree(filename);
                 System.out.println("Custom tree loaded successfully.");
+                break;
             }//End try
             catch (FileNotFoundException e) 
             {
                 System.out.println("There is no start checkpoint.");
                 tree = createDefaultTree(mode);
+                break;
             }//End catch
             catch (Exception e) 
             {
@@ -84,15 +88,18 @@ public class FinalAssignment
                 return;
             }//End catch
         }//End if
-        else if ("n".equals(load)) 
+        else if ("n".equalsIgnoreCase(load)) 
         {
             tree = createDefaultTree(mode);
+            break;
         } //End else if
         else 
         {
             System.out.println("Invalid input. Please enter 'y' or 'n'.");
-            return;
+            load = scan.next();  // ask the user again
+            scan.nextLine();
         }//End else
+    }
 
         while (true) 
         {
@@ -181,10 +188,8 @@ public class FinalAssignment
         }//End while
     }//End main
 
-    //Creates a default tree with questions and potential answers
-
     /**
-     *
+     *BinaryTree
      * @param mode
      * @return
      */
@@ -281,10 +286,8 @@ public class FinalAssignment
         return tree;
     }//End BinaryTree
 
-    //Saves the tree to a .ser file
-
     /**
-     *
+     *saveBinaryTree
      * @param tree
      * @param filename
      * @throws Exception
@@ -299,10 +302,8 @@ public class FinalAssignment
         System.out.println("The tree has been successfully saved\n");
     }//End saveBinaryTree
 
-    //Loads the tree from a .ser file
-
     /**
-     *
+     *loadBinaryTree
      * @param filename
      * @return
      * @throws Exception
