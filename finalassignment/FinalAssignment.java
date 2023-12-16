@@ -103,8 +103,6 @@ public class FinalAssignment
 
         while (true) 
         {
-            System.out.println("Think of a random animal, I will attempt to guess it.");
-
             TreeNode<String> currentNode = tree.getRootNode();
 
             while (!currentNode.isLeaf()) 
@@ -112,7 +110,6 @@ public class FinalAssignment
                 System.out.println(currentNode.getData());
                 answer = scan.nextLine();
 
-                //Left if correct, right if incorrect
                 if (answer.toLowerCase().startsWith("y")) 
                 {
                     currentNode = currentNode.getLeftChild();
@@ -134,7 +131,7 @@ public class FinalAssignment
             else    
             {
                 //Ask for the answer and save it
-                System.out.println("I don't know. What is the correct answer?");
+                System.out.println("I give up. What is the correct answer?");
                 String newItem = scan.nextLine();
                 String oldItem = currentNode.getData();
 
@@ -146,11 +143,10 @@ public class FinalAssignment
                 newQuestion = newQuestion.trim();
                 if (!newQuestion.endsWith("?")) newQuestion += "?";
                 {
-                //Save the updated node structure
-                currentNode.setData(newQuestion);
-                currentNode.setLeftChild(new TreeNode<String>(newItem));
-                currentNode.setRightChild(new TreeNode<String>(oldItem));
-                }
+                    currentNode.setData(newQuestion);
+                    currentNode.setLeftChild(new TreeNode<String>(newItem));
+                    currentNode.setRightChild(new TreeNode<String>(oldItem));
+                }//End if
             }//End else
     
             System.out.println("Would you like to play again? (y or n)");
@@ -160,7 +156,7 @@ public class FinalAssignment
             {
                 System.out.println("Invalid input. Please enter 'y' or 'n'.");
                 action = scan.nextLine();
-            }
+            }//End while
 
             if (!action.toLowerCase().startsWith("y")) 
             {
@@ -170,21 +166,21 @@ public class FinalAssignment
                 {
                     System.out.println("Invalid input. Please enter 'y' or 'n'.");
                     save = scan.nextLine();
-                }
+                }//End while
                 if (save.toLowerCase().startsWith("y")) 
                 {
                     try 
                     {
                         saveBinaryTree(tree, filename);
                         System.out.println("Current checkpoint saved successfully.");                    
-                    } 
+                    }//End try
                     catch (Exception e) 
                     {
                         e.printStackTrace();
-                    }
-                }
+                    }//End catch
+                }//End if
                 break;
-            }
+            }//End if
         }//End while
     }//End main
 
@@ -198,6 +194,7 @@ public class FinalAssignment
         BinaryTree<String> tree = new BinaryTree<String>();
         if (mode == 1) 
         {
+            System.out.println("Think of a random animal, I will attempt to guess it.");
             TreeNode<String> question1 = new TreeNode<String>("Is it a mammal?");
             TreeNode<String> question2 = new TreeNode<String>("Does it bite?");
             TreeNode<String> question3 = new TreeNode<String>("Does it make a 'meow' sound?");
@@ -213,20 +210,21 @@ public class FinalAssignment
             
             tree.setRoot(question1);
             question1.setLeftChild(question2);
-            question1.setRightChild(ans3);
-            question2.setLeftChild(question3);
-            question2.setRightChild(ans2);
+            question1.setRightChild(question3);
+            question2.setLeftChild(ans2);
+            question2.setRightChild(question4);
             question3.setLeftChild(ans1);
-            question3.setRightChild(ans3);
-            question4.setLeftChild(ans4);
-            question4.setRightChild(ans3);
+            question3.setRightChild(question5);
+            question4.setLeftChild(ans3);
+            question4.setRightChild(ans4);
             question5.setLeftChild(ans4);
-            question5.setRightChild(ans5);
+            question5.setRightChild(question6);
             question6.setLeftChild(ans5);
             question6.setRightChild(ans6);
         }//End if
         else if (mode == 2) 
         {
+            System.out.println("Think of a random vegetable, I will attempt to guess it.");
             TreeNode<String> question1 = new TreeNode<String>("Is it a vegetable?");
             TreeNode<String> question2 = new TreeNode<String>("Is it a type of grain?");
             TreeNode<String> question3 = new TreeNode<String>("Is it commonly used in salads?");
@@ -242,21 +240,22 @@ public class FinalAssignment
             
             tree.setRoot(question1);
             question1.setLeftChild(question2);
-            question1.setRightChild(ans3);
+            question1.setRightChild(question3);
             question2.setLeftChild(ans2);
-            question2.setRightChild(ans1);
-            question3.setLeftChild(ans3);
-            question3.setRightChild(ans5);
+            question2.setRightChild(question4);
+            question3.setLeftChild(ans1);
+            question3.setRightChild(question5);
             question4.setLeftChild(ans3);
-            question4.setRightChild(ans6);
-            question5.setLeftChild(ans1);
-            question5.setRightChild(ans4);
-            question6.setLeftChild(ans6);
-            question6.setRightChild(ans4);
+            question4.setRightChild(ans4);
+            question5.setLeftChild(ans4);
+            question5.setRightChild(question6);
+            question6.setLeftChild(ans5);
+            question6.setRightChild(ans6);
         }//End else if
         else if (mode == 3) 
         {
-            TreeNode<String> question1 = new TreeNode<String>("Is it a mineral or gemstone?");
+            System.out.println("Think of a random mineral, I will attempt to guess it.");
+            TreeNode<String> question1 = new TreeNode<String>("Is it a gemstone?");
             TreeNode<String> question2 = new TreeNode<String>("Is it a type of metal?");
             TreeNode<String> question3 = new TreeNode<String>("Is it known for its brilliance?");
             TreeNode<String> question4 = new TreeNode<String>("Is it commonly used in jewelry?");
@@ -271,17 +270,17 @@ public class FinalAssignment
             
             tree.setRoot(question1);
             question1.setLeftChild(question2);
-            question1.setRightChild(ans3);
+            question1.setRightChild(question3);
             question2.setLeftChild(ans2);
-            question2.setRightChild(ans1);
-            question3.setLeftChild(ans3);
-            question3.setRightChild(ans6);
+            question2.setRightChild(question4);
+            question3.setLeftChild(ans1);
+            question3.setRightChild(question5);
             question4.setLeftChild(ans3);
             question4.setRightChild(ans4);
-            question5.setLeftChild(ans1);
-            question5.setRightChild(ans4);
-            question6.setLeftChild(ans6);
-            question6.setRightChild(ans2);
+            question5.setLeftChild(ans4);
+            question5.setRightChild(question6);
+            question6.setLeftChild(ans5);
+            question6.setRightChild(ans6);
         }//End else if 
         return tree;
     }//End BinaryTree
